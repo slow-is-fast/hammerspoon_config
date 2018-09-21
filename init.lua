@@ -2,8 +2,13 @@ hs.loadSpoon("WinWin")
 hs.loadSpoon("WindowGrid")
 hs.loadSpoon("WindowHalfsAndThirds")
 hs.loadSpoon("KSheet")
-hs.loadSpoon("Seal")
+-- hs.loadSpoon("Seal")
 hs.loadSpoon("SpoonInstall")
+hs.loadSpoon("AClock")
+hs.loadSpoon("HCalendar")
+hs.loadSpoon("CountDown")
+hs.loadSpoon("HSKeybindings")
+hs.loadSpoon("TimeFlow")
 
 Install=spoon.SpoonInstall
 
@@ -318,7 +323,7 @@ hs.hotkey.bind(
 end)
 
 hs.hotkey.bind(
-    hyper, "O",
+    hyper, "R",
     function()
         window.focusedWindow():moveToUnit(layout.right50)
 end)
@@ -425,12 +430,12 @@ hs.hotkey.bind(
         end
 end)
 
-hs.hotkey.new({}, "escape", nil,
-    function()
-        spoon.KSheet:hide()
-        ksheetIsShow = false
-        ksheetAppPath = ""
-end):enable()
+-- hs.hotkey.new({}, "escape", nil,
+    -- function()
+        -- spoon.KSheet:hide()
+        -- ksheetIsShow = false
+        -- ksheetAppPath = ""
+-- end):enable()
 
 
 -- Reload config.
@@ -441,12 +446,16 @@ hs.hotkey.bind(
 end)
 
 -- Use seal instead Alfred.
-spoon.Seal:loadPlugins({"apps"})
-spoon.Seal:bindHotkeys({show={{"alt"}, "Space"}})
-spoon.Seal:start()
+-- spoon.Seal:loadPlugins({"apps"})
+-- spoon.Seal:bindHotkeys({show={{"alt"}, "Space"}})
+-- spoon.Seal:start()
 
 -- We put reload notify at end of config, notify popup mean no error in config.
 hs.notify.new({title="Manatee", informativeText="Andy, I am online!"}):send()
 
 -- Speak something after configuration success.
 -- speaker:speak("Andy, I am online!")
+hs.hotkey.bind(
+    hyper, "C",function()
+    spoon.AClock:toggleShow()
+end)
