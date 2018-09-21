@@ -492,38 +492,6 @@ hs.hotkey.new({}, "escape", nil,
         ksheetAppPath = ""
 end):enable()
 
--- Execute v2ray default, fuck GFW.
-local v2rayPath = "/Users/andy/v2ray/v2ray"
-local v2rayTask = nil
-
-local function stopV2ray()
-    if v2rayTask and v2rayTask:isRunning() then
-        v2rayTask:terminate()
-    end
-end
-
-local function startV2ray()
-    v2rayTask = hs.task.new(v2rayPath, nil)
-    v2rayTask:start()
-end
-
-local function reloadV2ray()
-    stopV2ray()
-    startV2ray()
-
-    hs.notify.new({title="Manatee", informativeText="Reload v2ray"}):send()
-end
-startV2ray()
-
-local v2rayTrayIcon = hs.menubar.new()
-v2rayTrayIcon:setTitle("V2ray")
-v2rayTrayIcon:setTooltip("Click to reload V2ray")
-v2rayTrayIcon:setClickCallback(reloadV2ray)
-
-hs.hotkey.bind(hyper, "]", reloadV2ray)
-
--- Force system sleep.
-hs.hotkey.bind(hyper, "delete", hs.caffeinate.systemSleep)
 
 -- Reload config.
 hs.hotkey.bind(
