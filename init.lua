@@ -20,7 +20,7 @@ local window = require 'hs.window'
 local speech = require 'hs.speech'
 
 -- Init speaker.
-speaker = speech.new()
+-- speaker = speech.new()
 
 -- I don't know how to disable noise global key "Command + Shift +Q" in MacOS.
 -- So i redirect "Command + Shift + Q" to "Ctrl + Command + Shift + Q" for Emacs,
@@ -52,7 +52,7 @@ local key2App = {
     c = {'/Applications/Kindle.app', 'English'},
     n = {'/Applications/NeteaseMusic.app', 'Chinese'},
     w = {'/Applications/WeChat.app', 'Chinese'},
-    e = {'/Applications/企业微信.app', 'Chinese'},
+    e = {'/Applications/Safari.app', 'English'},
     s = {'/Applications/System Preferences.app', 'English'},
     d = {'/Applications/Dash.app', 'English'},
 }
@@ -528,7 +528,7 @@ hs.hotkey.bind(hyper, "delete", hs.caffeinate.systemSleep)
 -- Reload config.
 hs.hotkey.bind(
     hyper, "'", function ()
-        speaker:speak("Offline to reloading...")
+        -- speaker:speak("Offline to reloading...")
         hs.reload()
 end)
 
@@ -541,4 +541,4 @@ spoon.Seal:start()
 hs.notify.new({title="Manatee", informativeText="Andy, I am online!"}):send()
 
 -- Speak something after configuration success.
-speaker:speak("Andy, I am online!")
+-- speaker:speak("Andy, I am online!")
