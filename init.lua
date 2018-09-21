@@ -58,7 +58,7 @@ local key2App = {
     n = {'/Applications/NeteaseMusic.app', 'Chinese'},
     w = {'/Applications/WeChat.app', 'Chinese'},
     e = {'/Applications/Safari.app', 'English'},
-    s = {'/Applications/System Preferences.app', 'English'},
+    s = {'/Applications/Sublime Text.app', 'English'},
     d = {'/Applications/Dash.app', 'English'},
 }
 
@@ -304,7 +304,7 @@ function resizeToCenter()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
-    local winScale = 0.7
+    local winScale = 0.8
 
     f.x = max.x + (max.w * (1 - winScale) / 2)
     f.y = max.y + (max.h * (1 - winScale) / 2)
