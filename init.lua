@@ -5,10 +5,10 @@ hs.loadSpoon("KSheet")
 -- hs.loadSpoon("Seal")
 hs.loadSpoon("SpoonInstall")
 hs.loadSpoon("AClock")
-hs.loadSpoon("HCalendar")
+-- hs.loadSpoon("HCalendar")
 hs.loadSpoon("CountDown")
 hs.loadSpoon("HSKeybindings")
-hs.loadSpoon("TimeFlow")
+-- hs.loadSpoon("TimeFlow")
 
 Install=spoon.SpoonInstall
 
@@ -25,7 +25,7 @@ local window = require 'hs.window'
 local speech = require 'hs.speech'
 
 -- Init speaker.
--- speaker = speech.new()
+speaker = speech.new()
 
 -- I don't know how to disable noise global key "Command + Shift +Q" in MacOS.
 -- So i redirect "Command + Shift + Q" to "Ctrl + Command + Shift + Q" for Emacs,
@@ -49,13 +49,11 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 
 -- Key to launch application.
 local key2App = {
-    h = {'/Applications/iTerm.app', 'English'},
+    h = {'/Applications/Utilities/Terminal.app', 'English'},
     j = {'/Applications/Emacs.app', 'English'},
     k = {'/Applications/Google Chrome.app', 'English'},
-    l = {'/System/Library/CoreServices/Finder.app', 'English'},
-    x = {'/Applications/QQMusic.app', 'Chinese'},
-    c = {'/Applications/Kindle.app', 'English'},
-    n = {'/Applications/NeteaseMusic.app', 'Chinese'},
+    l = {'/Applications/PhpStorm.app','English'},
+    x = {'/Applications/Sequel Pro.app', 'English'},
     w = {'/Applications/WeChat.app', 'Chinese'},
     e = {'/Applications/Safari.app', 'English'},
     s = {'/Applications/Sublime Text.app', 'English'},
@@ -92,9 +90,9 @@ hs.hotkey.bind(hyper, "z", showAppKeystroke)
 
 -- Maximize window when specify application started.
 local maximizeApps = {
-    "/Applications/iTerm.app",
-    "/Applications/Google Chrome.app",
-    "/System/Library/CoreServices/Finder.app",
+    -- "/Applications/iTerm.app",
+    -- "/Applications/Google Chrome.app",
+    -- "/System/Library/CoreServices/Finder.app",
 }
 
 local windowCreateFilter = hs.window.filter.new():setDefaultFilter()
@@ -441,7 +439,7 @@ end)
 -- Reload config.
 hs.hotkey.bind(
     hyper, "'", function ()
-        -- speaker:speak("Offline to reloading...")
+        speaker:speak("Cover me, reloading...")
         hs.reload()
 end)
 
@@ -454,7 +452,7 @@ end)
 hs.notify.new({title="Manatee", informativeText="Andy, I am online!"}):send()
 
 -- Speak something after configuration success.
--- speaker:speak("Andy, I am online!")
+speaker:speak("Boss, I am online!")
 hs.hotkey.bind(
     hyper, "C",function()
     spoon.AClock:toggleShow()
