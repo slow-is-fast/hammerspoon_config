@@ -215,7 +215,7 @@ function toggleApplication(app)
             if app:isFrontmost() then
                 -- Show mouse circle if has focus on target application.
                 drawMouseCircle()
-
+                mainwin.application():hide()
                 setInputMethod = false
             else
                 -- Focus target application if it not at frontmost.
@@ -449,7 +449,7 @@ end)
 -- spoon.Seal:start()
 
 -- We put reload notify at end of config, notify popup mean no error in config.
-hs.notify.new({title="Manatee", informativeText="Andy, I am online!"}):send()
+hs.notify.new({title="NEST", informativeText="Boss, I am online!"}):send()
 
 -- Speak something after configuration success.
 speaker:speak("Boss, I am online!")
