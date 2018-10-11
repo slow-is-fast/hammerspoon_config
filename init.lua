@@ -302,7 +302,7 @@ function resizeToCenter()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
-    local winScale = 0.8
+    local winScale = 0.9
 
     f.x = max.x + (max.w * (1 - winScale) / 2)
     f.y = max.y + (max.h * (1 - winScale) / 2)
@@ -326,27 +326,27 @@ hs.hotkey.bind(
         window.focusedWindow():moveToUnit(layout.right50)
 end)
 
-hs.hotkey.bind(
-    hyper, "P",
-    function()
-        window.focusedWindow():toggleFullScreen()
-end)
+-- hs.hotkey.bind(
+--     hyper, "P",
+--     function()
+--         window.focusedWindow():toggleFullScreen()
+-- end)
 
-hs.hotkey.bind(
-    hyper, ";",
-    function()
-        -- Kill current focused window.
-        window.focusedWindow():close()
+-- hs.hotkey.bind(
+--     hyper, ";",
+--     function()
+--         -- Kill current focused window.
+--         window.focusedWindow():close()
 
-        -- Then focus next window.
-        hs.window.frontmostWindow():focus()
-end)
+--         -- Then focus next window.
+--         hs.window.frontmostWindow():focus()
+-- end)
 
-hs.hotkey.bind(
-    hyper, "-",
-    function()
-        hs.application.frontmostApplication():kill()
-end)
+-- hs.hotkey.bind(
+--     hyper, "-",
+--     function()
+--         hs.application.frontmostApplication():kill()
+-- end)
 
 hs.hotkey.bind(
     hyper, ".",
