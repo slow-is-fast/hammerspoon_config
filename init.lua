@@ -59,6 +59,7 @@ local key2App = {
     s = {'/Applications/Sublime Text.app', 'English'},
     d = {'/Applications/Dash.app', 'English'},
     b = {'/Applications/Todoist.app', 'English'},
+    p = {'/Applications/Emacs.app', 'English'},
 }
 
 -- Show launch application's keystroke.
