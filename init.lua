@@ -53,13 +53,13 @@ local key2App = {
     j = {'/Applications/Emacs.app', 'English'},
     k = {'/Applications/Google Chrome.app', 'English'},
     l = {'/Applications/PhpStorm.app','English'},
-    x = {'/Applications/Sequel Pro.app', 'English'},
+    v = {'/Applications/Visual Studio Code.app', 'English'},
     w = {'/Applications/WeChat.app', 'Chinese'},
     e = {'/Applications/Safari.app', 'English'},
     s = {'/Applications/Sublime Text.app', 'English'},
     d = {'/Applications/Dash.app', 'English'},
     b = {'/Applications/Todoist.app', 'English'},
-    p = {'/Applications/Emacs.app', 'English'},
+    -- p = {'/Applications/Emacs.app', 'English'},
 }
 
 -- Show launch application's keystroke.
@@ -375,17 +375,17 @@ for key, app in pairs(key2App) do
 end
 
 -- Move application to screen.
-hs.hotkey.bind(
-    hyper, "1",
-    function()
-        moveToScreen(hs.window.focusedWindow(), 1)
-end)
+-- hs.hotkey.bind(
+--     hyper, "1",
+--     function()
+--         moveToScreen(hs.window.focusedWindow(), 1)
+-- end)
 
-hs.hotkey.bind(
-    hyper, "2",
-    function()
-        moveToScreen(hs.window.focusedWindow(), 2)
-end)
+-- hs.hotkey.bind(
+--     hyper, "2",
+--     function()
+--         moveToScreen(hs.window.focusedWindow(), 2)
+-- end)
 
 -- Binding key to start plugin.
 Install:andUse(
