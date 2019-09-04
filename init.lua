@@ -58,7 +58,7 @@ local key2App = {
     e = {'/Applications/Safari.app', 'English'},
     s = {'/Applications/Sublime Text.app', 'English'},
     d = {'/Applications/Dash.app', 'English'},
-    b = {'/Applications/Todoist.app', 'English'},
+    b = {'/Applications/Sourcetree.app', 'English'},
     -- p = {'/Applications/Emacs.app', 'English'},
 }
 
