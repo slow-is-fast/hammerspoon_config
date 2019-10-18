@@ -49,8 +49,8 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 
 -- Key to launch application.
 local key2App = {
-    h = {'/Applications/Firefox Developer Edition.app', 'English'},
-    j = {'/Applications/Visual Studio Code.app', 'English'},
+    j = {'/Applications/Firefox Developer Edition.app', 'English'},
+    h = {'/Applications/Visual Studio Code.app', 'English'},
     -- k = {'/Applications/Google Chrome.app', 'English'},
     l = {'/Applications/PhpStorm.app','English'},
     w = {'/Applications/WeChat.app', 'Chinese'},
