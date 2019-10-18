@@ -49,17 +49,14 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 
 -- Key to launch application.
 local key2App = {
-    h = {'/Applications/Utilities/Terminal.app', 'English'},
-    j = {'/Applications/Emacs.app', 'English'},
+    h = {'/Applications/Firefox Developer Edition.app', 'English'},
+    j = {'/Applications/Visual Studio Code.app', 'English'},
     k = {'/Applications/Google Chrome.app', 'English'},
     l = {'/Applications/PhpStorm.app','English'},
-    v = {'/Applications/Visual Studio Code.app', 'English'},
     w = {'/Applications/WeChat.app', 'Chinese'},
     e = {'/Applications/Safari.app', 'English'},
     s = {'/Applications/Sublime Text.app', 'English'},
-    d = {'/Applications/Dash.app', 'English'},
     b = {'/Applications/Sourcetree.app', 'English'},
-    -- p = {'/Applications/Emacs.app', 'English'},
 }
 
 -- Show launch application's keystroke.
