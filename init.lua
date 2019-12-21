@@ -27,23 +27,6 @@ local speech = require 'hs.speech'
 -- Init speaker.
 speaker = speech.new()
 
--- I don't know how to disable noise global key "Command + Shift +Q" in MacOS.
--- So i redirect "Command + Shift + Q" to "Ctrl + Command + Shift + Q" for Emacs,
--- then i make Emacs response "Ctrl + Command + Shift + Q" to implement key binding "Command + Shift + Q".
-local newKeyEvent = require 'hs.eventtap'.event.newKeyEvent
-local usleep = require 'hs.timer'.usleep
-hs.hotkey.new(
-    {"cmd", "shift"}, "q", nil,
-    function()
-        if window.focusedWindow():application():path() == "/Applications/Emacs.app" then
-            local app = window.focusedWindow():application()
-
-            newKeyEvent({"ctrl", "cmd", "shift"}, "q", true):post(app)
-            usleep(1000)
-            newKeyEvent({"ctrl", "cmd", "shift"}, "q", false):post(app)
-        end
-end):enable()
-
 -- Init.
 hs.window.animationDuration = 0 -- don't waste time on animation when resize window
 
@@ -51,7 +34,7 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 local key2App = {
     j = {'/Applications/Firefox Developer Edition.app', 'English'},
     h = {'/Applications/Visual Studio Code.app', 'English'},
-    -- k = {'/Applications/Google Chrome.app', 'English'},
+    t = {'/System/Applications/Utilities/Terminal.app', 'English'},
     l = {'/Applications/PhpStorm.app','English'},
     w = {'/Applications/WeChat.app', 'Chinese'},
     e = {'/Applications/Safari.app', 'English'},
@@ -87,33 +70,6 @@ end
 
 hs.hotkey.bind(hyper, "z", showAppKeystroke)
 
--- Maximize window when specify application started.
-local maximizeApps = {
-    -- "/Applications/iTerm.app",
-    -- "/Applications/Google Chrome.app",
-    -- "/System/Library/CoreServices/Finder.app",
-}
-
-local windowCreateFilter = hs.window.filter.new():setDefaultFilter()
-windowCreateFilter:subscribe(
-    hs.window.filter.windowCreated,
-    function (win, ttl, last)
-        for index, value in ipairs(maximizeApps) do
-            if win:application():path() == value then
-                win:maximize()
-                return true
-            end
-        end
-end)
-
--- Manage application's inputmethod status.
-local function Chinese()
-    hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
-end
-
-local function English()
-    hs.keycodes.currentSourceID("com.apple.keylayout.ABC")
-end
 
 -- Build better app switcher.
 switcher = hs.window.switcher.new(
@@ -138,20 +94,7 @@ hs.hotkey.bind("alt-shift", "tab", function()
 end)
 
 function updateFocusAppInputMethod()
-    for key, app in pairs(key2App) do
-	local appPath = app[1]
-	local inputmethod = app[2]
 
-	if window.focusedWindow():application():path() == appPath then
-	    if inputmethod == 'English' then
-		English()
-	    else
-		Chinese()
-	    end
-
-	    break
-	end
-    end
 end
 
 -- Handle cursor focus and application's screen manage.
@@ -229,14 +172,6 @@ function toggleApplication(app)
             end
         end
     end
-
-    if setInputMethod then
-        if inputMethod == 'English' then
-            English()
-        else
-            Chinese()
-        end
-    end
 end
 
 local mouseCircle = nil
@@ -285,6 +220,8 @@ function drawMouseCircle()
     end)
 end
 
+
+
 moveToScreen = function(win, n)
     local screens = hs.screen.allScreens()
     if n > #screens then
@@ -325,27 +262,6 @@ hs.hotkey.bind(
         window.focusedWindow():moveToUnit(layout.right50)
 end)
 
--- hs.hotkey.bind(
---     hyper, "P",
---     function()
---         window.focusedWindow():toggleFullScreen()
--- end)
-
--- hs.hotkey.bind(
---     hyper, ";",
---     function()
---         -- Kill current focused window.
---         window.focusedWindow():close()
-
---         -- Then focus next window.
---         hs.window.frontmostWindow():focus()
--- end)
-
--- hs.hotkey.bind(
---     hyper, "-",
---     function()
---         hs.application.frontmostApplication():kill()
--- end)
 
 hs.hotkey.bind(
     hyper, ".",
@@ -370,19 +286,6 @@ for key, app in pairs(key2App) do
             toggleApplication(app)
     end)
 end
-
--- Move application to screen.
--- hs.hotkey.bind(
---     hyper, "1",
---     function()
---         moveToScreen(hs.window.focusedWindow(), 1)
--- end)
-
--- hs.hotkey.bind(
---     hyper, "2",
---     function()
---         moveToScreen(hs.window.focusedWindow(), 2)
--- end)
 
 -- Binding key to start plugin.
 Install:andUse(
@@ -427,13 +330,6 @@ hs.hotkey.bind(
         end
 end)
 
--- hs.hotkey.new({}, "escape", nil,
-    -- function()
-        -- spoon.KSheet:hide()
-        -- ksheetIsShow = false
-        -- ksheetAppPath = ""
--- end):enable()
-
 
 -- Reload config.
 hs.hotkey.bind(
@@ -441,11 +337,6 @@ hs.hotkey.bind(
         speaker:speak("Cover me, reloading...")
         hs.reload()
 end)
-
--- Use seal instead Alfred.
--- spoon.Seal:loadPlugins({"apps"})
--- spoon.Seal:bindHotkeys({show={{"alt"}, "Space"}})
--- spoon.Seal:start()
 
 -- We put reload notify at end of config, notify popup mean no error in config.
 hs.notify.new({title="NEST", informativeText="Boss, I am online!"}):send()
