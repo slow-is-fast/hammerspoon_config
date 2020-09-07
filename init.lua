@@ -233,6 +233,21 @@ moveToScreen = function(win, n)
     end
 end
 
+function resizeToFullWindow()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+    local winScale = 0.9
+
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w
+    f.h = max.h
+    win:setFrame(f)
+end
+hs.hotkey.bind(hyper, 'N', resizeToFullWindow)
+
 function resizeToCenter()
     local win = hs.window.focusedWindow()
     local f = win:frame()
